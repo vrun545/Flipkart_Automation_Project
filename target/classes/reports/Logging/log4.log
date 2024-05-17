@@ -1,0 +1,123 @@
+11:51:48.603 [TestNG-tests-3] INFO  - 
+
+------------New Logging Details Added Below--------------
+11:51:48.615 [TestNG-tests-3] INFO  - Initializing WebDriver for browser: edge
+11:51:48.615 [TestNG-tests-3] INFO  - ---------------------------------------------------------
+11:51:49.444 [TestNG-tests-4] INFO  - 
+
+------------New Logging Details Added Below--------------
+11:51:49.445 [TestNG-tests-4] INFO  - Initializing WebDriver for browser: headless
+11:51:49.445 [TestNG-tests-4] INFO  - ---------------------------------------------------------
+11:51:50.483 [TestNG-tests-4] INFO  - Opening Flipkart Site
+11:51:50.483 [TestNG-tests-3] INFO  - Opening Flipkart Site
+11:51:54.337 [TestNG-tests-3] INFO  - getFlipkartSite Passed
+11:51:54.337 [TestNG-tests-4] INFO  - getFlipkartSite Passed
+11:51:54.345 [TestNG-tests-4] INFO  - getFlipkartSite Passed
+11:51:54.346 [TestNG-tests-4] INFO  - Searching a product on Search-Box
+11:51:54.351 [TestNG-tests-3] INFO  - getFlipkartSite Passed
+11:51:54.352 [TestNG-tests-3] INFO  - Searching a product on Search-Box
+11:52:03.537 [TestNG-tests-2] INFO  - 
+
+------------New Logging Details Added Below--------------
+11:52:03.538 [TestNG-tests-2] INFO  - Initializing WebDriver for browser: firefox
+11:52:03.538 [TestNG-tests-2] INFO  - ---------------------------------------------------------
+11:52:03.611 [TestNG-tests-2] INFO  - Opening Flipkart Site
+11:52:04.371 [TestNG-tests-4] INFO  - searchProduct Passed
+11:52:04.372 [TestNG-tests-4] INFO  - Changing the pincode
+11:52:04.700 [TestNG-tests-3] INFO  - searchProduct Passed
+11:52:04.702 [TestNG-tests-3] INFO  - Changing the pincode
+11:52:08.784 [TestNG-tests-2] INFO  - getFlipkartSite Passed
+11:52:08.787 [TestNG-tests-2] INFO  - getFlipkartSite Passed
+11:52:08.789 [TestNG-tests-2] INFO  - Searching a product on Search-Box
+11:52:09.473 [TestNG-tests-4] ERROR - changingPinCode Failed
+11:52:09.477 [TestNG-tests-4] INFO  - Iterating on product images
+11:52:17.530 [TestNG-tests-4] INFO  - checkProductImages Passed
+11:52:17.531 [TestNG-tests-4] INFO  - Adding a mobile product into cart
+11:52:18.078 [TestNG-tests-4] INFO  - addToCart Passed
+11:52:18.079 [TestNG-tests-4] INFO  - Placing the order
+11:52:18.894 [TestNG-tests-2] INFO  - searchProduct Passed
+11:52:18.897 [TestNG-tests-2] INFO  - Changing the pincode
+11:52:19.549 [TestNG-tests-3] ERROR - changingPinCode Failed
+11:52:19.551 [TestNG-tests-3] INFO  - Iterating on product images
+11:52:24.505 [TestNG-tests-2] INFO  - changingPinCode Passed
+11:52:24.506 [TestNG-tests-2] INFO  - Iterating on product images
+11:52:29.600 [TestNG-tests-4] INFO  - placeOrder Passed
+11:52:29.601 [TestNG-tests-4] INFO  - Sorting products from Low To High Prices
+11:52:32.424 [TestNG-tests-3] INFO  - checkProductImages Passed
+11:52:32.431 [TestNG-tests-3] INFO  - Adding a mobile product into cart
+11:52:33.256 [TestNG-tests-3] INFO  - addToCart Passed
+11:52:33.257 [TestNG-tests-3] INFO  - Placing the order
+11:52:33.863 [TestNG-tests-4] INFO  - sortProduct Passed
+11:52:33.865 [TestNG-tests-4] INFO  - Applying the price filter on search results
+11:52:36.865 [TestNG-tests-4] INFO  - applyPriceFilter Passed
+11:52:36.867 [TestNG-tests-4] INFO  - Applying the brand filter on search results
+11:52:38.132 [TestNG-tests-2] INFO  - checkProductImages Passed
+11:52:38.134 [TestNG-tests-2] INFO  - Adding a mobile product into cart
+11:52:38.583 [TestNG-tests-3] INFO  - placeOrder Passed
+11:52:38.585 [TestNG-tests-3] INFO  - Sorting products from Low To High Prices
+11:52:38.602 [TestNG-tests-2] INFO  - addToCart Passed
+11:52:38.604 [TestNG-tests-2] INFO  - Placing the order
+11:52:39.409 [TestNG-tests-4] ERROR - applyBrandFilter Failed
+11:52:39.410 [TestNG-tests-4] INFO  - Applying the rating filter on search results
+11:52:39.415 [TestNG-tests-4] INFO  - applyRatingFilter Passed
+11:52:39.417 [TestNG-tests-4] INFO  - applyRatingFilter Passed
+11:52:39.418 [TestNG-tests-4] INFO  - Checking Men jacket products
+11:52:42.424 [TestNG-tests-3] INFO  - sortProduct Passed
+11:52:42.426 [TestNG-tests-3] INFO  - Applying the price filter on search results
+11:52:43.167 [TestNG-tests-4] INFO  - checkMenApparel Passed
+11:52:43.171 [TestNG-tests-4] INFO  - checkMenApparel Passed
+11:52:43.173 [TestNG-tests-4] INFO  - Checking Offer-Zone Products on Flipkart
+11:52:43.921 [TestNG-tests-2] INFO  - placeOrder Passed
+11:52:43.923 [TestNG-tests-2] INFO  - Sorting products from Low To High Prices
+11:52:43.938 [TestNG-tests-3] INFO  - applyPriceFilter Passed
+11:52:43.939 [TestNG-tests-3] INFO  - Applying the brand filter on search results
+11:52:46.139 [TestNG-tests-3] ERROR - applyBrandFilter Failed
+11:52:46.140 [TestNG-tests-3] INFO  - Applying the rating filter on search results
+11:52:46.144 [TestNG-tests-3] INFO  - applyRatingFilter Passed
+11:52:46.150 [TestNG-tests-3] INFO  - applyRatingFilter Passed
+11:52:46.153 [TestNG-tests-3] INFO  - Checking Men jacket products
+11:52:46.853 [TestNG-tests-4] INFO  - checkOfferZone Passed
+11:52:46.856 [TestNG-tests-4] INFO  - checkOfferZone Passed
+11:52:46.857 [TestNG-tests-4] INFO  - Checking my flipkart Cart
+11:52:49.255 [TestNG-tests-3] INFO  - checkMenApparel Passed
+11:52:49.260 [TestNG-tests-3] INFO  - checkMenApparel Passed
+11:52:49.262 [TestNG-tests-3] INFO  - Checking Offer-Zone Products on Flipkart
+11:52:52.770 [TestNG-tests-2] INFO  - sortProduct Passed
+11:52:52.772 [TestNG-tests-2] INFO  - Applying the price filter on search results
+11:52:52.891 [TestNG-tests-3] INFO  - checkOfferZone Passed
+11:52:52.896 [TestNG-tests-3] INFO  - checkOfferZone Passed
+11:52:52.897 [TestNG-tests-3] INFO  - Checking my flipkart Cart
+11:52:53.933 [TestNG-tests-2] ERROR - applyPriceFilter Failed
+11:52:53.934 [TestNG-tests-2] INFO  - Applying the brand filter on search results
+11:52:54.240 [TestNG-tests-2] ERROR - applyBrandFilter Failed
+11:52:54.242 [TestNG-tests-2] INFO  - Applying the rating filter on search results
+11:52:54.244 [TestNG-tests-2] INFO  - applyRatingFilter Passed
+11:52:54.246 [TestNG-tests-2] INFO  - applyRatingFilter Passed
+11:52:54.247 [TestNG-tests-2] INFO  - Checking Men jacket products
+11:52:54.420 [TestNG-tests-2] ERROR - checkMenApparel Failed
+11:52:54.422 [TestNG-tests-2] INFO  - checkMenApparel Passed
+11:52:54.423 [TestNG-tests-2] INFO  - Checking Offer-Zone Products on Flipkart
+11:52:57.077 [TestNG-tests-4] ERROR - checkMyCart Failed
+11:52:57.079 [TestNG-tests-4] INFO  - Checking Flight section on flipkart Cart
+11:52:57.627 [TestNG-tests-2] INFO  - checkOfferZone Passed
+11:52:57.630 [TestNG-tests-2] INFO  - checkOfferZone Passed
+11:52:57.632 [TestNG-tests-2] INFO  - Checking my flipkart Cart
+11:53:00.300 [TestNG-tests-4] INFO  - checkFlights Passed
+11:53:00.301 [TestNG-tests-4] INFO  - Trying to sign up as a new user
+11:53:03.331 [TestNG-tests-3] ERROR - checkMyCart Failed
+11:53:03.332 [TestNG-tests-3] INFO  - Checking Flight section on flipkart Cart
+11:53:06.029 [TestNG-tests-3] INFO  - checkFlights Passed
+11:53:06.029 [TestNG-tests-3] INFO  - Trying to sign up as a new user
+11:53:08.002 [TestNG-tests-2] ERROR - checkMyCart Failed
+11:53:08.002 [TestNG-tests-2] INFO  - Checking Flight section on flipkart Cart
+11:53:11.788 [TestNG-tests-2] ERROR - checkFlights Failed
+11:53:11.789 [TestNG-tests-2] INFO  - Trying to sign up as a new user
+11:53:12.982 [TestNG-tests-4] ERROR - registerUser Failed
+11:53:12.983 [TestNG-tests-4] INFO  - Checking Login Functionality on Flipkart Site
+11:53:19.018 [TestNG-tests-3] ERROR - registerUser Failed
+11:53:19.019 [TestNG-tests-3] INFO  - Checking Login Functionality on Flipkart Site
+11:53:24.997 [TestNG-tests-4] ERROR - checkLogin Failed
+11:53:26.067 [TestNG-tests-2] ERROR - registerUser Failed
+11:53:26.068 [TestNG-tests-2] INFO  - Checking Login Functionality on Flipkart Site
+11:53:29.825 [TestNG-tests-3] ERROR - checkLogin Failed
+11:53:37.488 [TestNG-tests-2] ERROR - checkLogin Failed

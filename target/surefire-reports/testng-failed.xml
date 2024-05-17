@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="4" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT" verbose="0">
+  <test thread-count="4" parallel="tests" name="ChromeTest(failed)" verbose="0">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="tests.Test_FlipkartSite">
+        <methods>
+          <include name="getTestResult"/>
+          <include name="initializeDriver"/>
+          <include name="tearDownTest"/>
+          <include name="executeTestCase" invocation-numbers="16 18 3 19 9"/>
+        </methods>
+      </class> <!-- tests.Test_FlipkartSite -->
+    </classes>
+  </test> <!-- ChromeTest(failed) -->
+  <test thread-count="4" parallel="tests" name="EdgeTest(failed)" verbose="0">
+    <parameter name="browser" value="edge"/>
+    <classes>
+      <class name="tests.Test_FlipkartSite">
+        <methods>
+          <include name="getTestResult"/>
+          <include name="tearDownTest"/>
+          <include name="initializeDriver"/>
+          <include name="executeTestCase" invocation-numbers="16 18 19 9"/>
+        </methods>
+      </class> <!-- tests.Test_FlipkartSite -->
+    </classes>
+  </test> <!-- EdgeTest(failed) -->
+  <test thread-count="4" parallel="tests" name="HeadlessTest(failed)" verbose="0">
+    <parameter name="browser" value="headless"/>
+    <classes>
+      <class name="tests.Test_FlipkartSite">
+        <methods>
+          <include name="getTestResult"/>
+          <include name="initializeDriver"/>
+          <include name="tearDownTest"/>
+          <include name="executeTestCase" invocation-numbers="16 18 19 9"/>
+        </methods>
+      </class> <!-- tests.Test_FlipkartSite -->
+    </classes>
+  </test> <!-- HeadlessTest(failed) -->
+  <test thread-count="4" parallel="tests" name="FirefoxTest(failed)" verbose="0">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="tests.Test_FlipkartSite">
+        <methods>
+          <include name="getTestResult"/>
+          <include name="initializeDriver"/>
+          <include name="tearDownTest"/>
+          <include name="executeTestCase" invocation-numbers="16 17 18 19 9 12"/>
+        </methods>
+      </class> <!-- tests.Test_FlipkartSite -->
+    </classes>
+  </test> <!-- FirefoxTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->
