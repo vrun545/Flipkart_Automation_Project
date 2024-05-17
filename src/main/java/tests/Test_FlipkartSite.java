@@ -90,25 +90,8 @@ public class Test_FlipkartSite {
 	    logger.info("Initializing WebDriver for browser: " + browser);
 	    logger.info("---------------------------------------------------------");
     }
-    
-    
-    @DataProvider(name = "testData")
-    public Object[][] provideTestData() throws IOException {
-        FileInputStream fis = new FileInputStream("C:\\Users\\varunbajpai\\eclipse-workspace\\FlipkartTesting\\src\\main\\java\\utils\\testdata\\TestData2.xlsx");
-        Workbook workbook = WorkbookFactory.create(fis);
-        Sheet sheet = workbook.getSheet("Sheet1"); 
-        int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-        Object[][] testData = new Object[rowCount][2]; 
-        for (int i = 1; i <= rowCount; i++) {
-            Row row = sheet.getRow(i);
-            String testCaseName = row.getCell(0).getStringCellValue();
-            String executionRequired = row.getCell(1).getStringCellValue();
-            testData[i-1][0] = testCaseName;
-            testData[i-1][1] = executionRequired;
-        }
-        return testData;
-    }
 
+    
     @Test(dataProvider = "testData")
     public void executeTestCase(String testCaseName, String executionRequired, ITestContext context) throws InterruptedException, IOException, MailosaurException {
         if (executionRequired.equalsIgnoreCase("Yes")) {
@@ -210,59 +193,72 @@ public class Test_FlipkartSite {
         String URL = ConfigFile.getURL();
  		driver.get(URL);	
  	}  
-    
-    
+        
     
 //    This test case for clicking a product on Homepage
     public void clickOnProduct() throws InterruptedException {
+    	try {
     	test = extent.createTest("checkProductClickHome", "This test case is for clicking a product on Homepage");
         test.log(Status.INFO, "This test case is for clicking a product on Homepage");
         logger.info("Clicking on a product on Homepage");
         
         FlipkartClickProductHome pageFactory = new FlipkartClickProductHome(driver);
         pageFactory.clickOnProduct();
+    	}	
+    	catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+    	}
     }
-    
     
     
 //  This test case is for searching a product on search-box
   	public void searchProduct() throws InterruptedException {
-  	  test = extent.createTest("searchProduct", "This test case is for searching a product on search-box");
-      test.log(Status.INFO, "This test case is for searching a product on search-box");
-      logger.info("Searching a product on Search-Box");
+  		try {
+  			test = extent.createTest("searchProduct", "This test case is for searching a product on search-box");
+  			test.log(Status.INFO, "This test case is for searching a product on search-box");
+  			logger.info("Searching a product on Search-Box");
       
-      FlipkartSearchBox pageFactory = new FlipkartSearchBox(driver);
-      String product = ConfigFile.getProduct();
-      Thread.sleep(2000);
-      pageFactory.enterProductName(product);
-      pageFactory.clickSearchButton();
-      pageFactory.clickProduct();
+  			FlipkartSearchBox pageFactory = new FlipkartSearchBox(driver);
+  			String product = ConfigFile.getProduct();
+  			Thread.sleep(2000);
+  			pageFactory.enterProductName(product);
+  			pageFactory.clickSearchButton();
+  			pageFactory.clickProduct();
+  		} catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
   }
   
-    
   
-//  This test case is for changing Pincode
-   	public void changingPinCode() throws InterruptedException {      
-	      test = extent.createTest("changingPinCode", "This test case is for changing the pincode");
-	      test.log(Status.INFO, "This test case is for changing the pincode");
-	      logger.info("Changing the pincode");
-	      
-	      // Handle new tab
-	      String originalTab = Utils.handleNewTab(driver);
-	      
-	      // Perform actions on the new tab
-	      FlipkartChangePincode pageFactory = new FlipkartChangePincode(driver);
-	      String pincode = ConfigFile.getPincode();
-	      pageFactory.enterPincode(pincode);
-	      
-	      // Assertion
-	      String expectedText = "Delivery";
-	      String actualText = pageFactory.getExpectedText();
-	      Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);
-	      
-	      driver.switchTo().window(originalTab);
-  }
-   
+ // This test case is for changing Pincode
+  	public void changingPinCode() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("changingPinCode", "This test case is for changing the pincode");
+  	        test.log(Status.INFO, "This test case is for changing the pincode");
+  	        logger.info("Changing the pincode");
+  	        
+  	        // Handle new tab
+  	        String originalTab = Utils.handleNewTab(driver);
+  	        
+  	        // Perform actions on the new tab
+  	        FlipkartChangePincode pageFactory = new FlipkartChangePincode(driver);
+  	        String pincode = ConfigFile.getPincode();
+  	        pageFactory.enterPincode(pincode);
+  	        
+  	        // Assertion
+  	        String expectedText = "Delivery";
+  	        String actualText = pageFactory.getExpectedText();
+  	        Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);
+  	        
+  	        driver.switchTo().window(originalTab);
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
+  	}
+ 
     
 //  This test case is for chechking product images
     	public void checkProductImages() throws InterruptedException {
@@ -276,138 +272,188 @@ public class Test_FlipkartSite {
 	        pageFactory.iterateOverImages();
 	    }
     
-    
-//    This test case is to Add Product to cart
-	public void addToCart() throws InterruptedException {
-		test = extent.createTest("addToCart", "This test case is to Add Product to cart");
-		test.log(Status.INFO, "This test case is to Add Product to cart");
-		logger.info("Adding a mobile product into cart");
-		
-	    FlipkartAddToCart pageFactory = new FlipkartAddToCart(driver);
-	    pageFactory.clickAddToCartButton();
-	}
-    
-    
-//  This test case is to place order
-	public void placeOrder() throws InterruptedException {
-		test = extent.createTest("placeOrder", "This test case is to place order");
-		test.log(Status.INFO, "This test case is to place order");
-		logger.info("Placing the order");
-		
-		FlipkartPlaceOrder pageFactory = new FlipkartPlaceOrder(driver);
-	    pageFactory.clickOrderButton();
-	    pageFactory.enterEmail();
-	    Thread.sleep(1000);
-	}
-  
+    	
+// This test case is to Add Product to cart
+   public void addToCart() throws InterruptedException {
+    	try {
+    	     test = extent.createTest("addToCart", "This test case is to Add Product to cart");
+    	     test.log(Status.INFO, "This test case is to Add Product to cart");
+    	     logger.info("Adding a mobile product into cart");
+    	        
+    	     FlipkartAddToCart pageFactory = new FlipkartAddToCart(driver);
+    	     pageFactory.clickAddToCartButton();
+    	    } catch (Exception e) {
+    	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+    	        throw e;
+    	    }
+    	}
+    	
+
+// This test case is to place order
+    public void placeOrder() throws InterruptedException {
+    	 try {
+    	     test = extent.createTest("placeOrder", "This test case is to place order");
+    	     test.log(Status.INFO, "This test case is to place order");
+    	     logger.info("Placing the order");
+    	        
+    	      FlipkartPlaceOrder pageFactory = new FlipkartPlaceOrder(driver);
+    	      pageFactory.clickOrderButton();
+    	      pageFactory.enterEmail();
+    	      Thread.sleep(1000);
+    	    } catch (Exception e) {
+    	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+    	        throw e;
+    	    }
+    	}
   
 	
-//	This test case is to sort product based on price
-	  public void sortProduct() throws InterruptedException {
-		test = extent.createTest("sortProduct", "This test case is to sort product based on price");
-		test.log(Status.INFO, "This test case is to sort product based on price");
-		logger.info("Sorting products from Low To High Prices");
-		
-		String filterLink = ConfigFile.getFilterLink();
-		driver.get(filterLink);
-		FlipkartSortFilter pageFactory = new FlipkartSortFilter(driver);
-	    pageFactory.applySortLowToHigh();
-	}
-	
-	
-  
-//	This test case is to apply price filter
-  	  public void applyPriceFilter() throws InterruptedException {
-		test = extent.createTest("applyPriceFilter" ,"This test case is to apply price filter");
-		test.log(Status.INFO, "This test case is to apply price filter");
-		logger.info("Applying the price filter on search results");
-		
-		FlipkartPriceFilters pageFactory = new FlipkartPriceFilters(driver);
-	    pageFactory.priceTag();
-	}
-  	
-  	
-//	This test case is to apply brand filter
-  	  public void applyBrandFilter() throws InterruptedException {
-		test = extent.createTest("applyBrandFilter", "This test case is to apply brand filter");
-		test.log(Status.INFO, "This test case is to apply brand filter");
-		logger.info("Applying the brand filter on search results");
-		
-		FlipkartBrandFilters pageFactory = new FlipkartBrandFilters(driver);
-	    pageFactory.brandFilter();
-	} 
-  	
-  	
-  	
-//	This test case is to apply rating filter
-  	  public void applyRatingFilter() throws InterruptedException {
-		test = extent.createTest("applyRatingFilter", "This test case is to apply rating filter");
-		test.log(Status.INFO, "This test case is to apply rating filter");
-		logger.info("Applying the rating filter on search results");
-		
-		FlipkartRatingFilters pageFactory = new FlipkartRatingFilters(driver);
-	    pageFactory.ratingFilter();
-	}
-  	
-    
-//	This test case is to apply Battery Capacity filter
-  	  public void applyBatteryCapacityFilter() throws InterruptedException {
-		test = extent.createTest("applyBatteryCapacityFilter", "This test case is to apply Battery Capacity filter");
-		test.log(Status.INFO, "This test case is to apply Battery Capacity filter");
-		logger.info("Applying the Battery Capacity filter on search results");
-		
-		FlipkartBatteryFilter pageFactory = new FlipkartBatteryFilter(driver);
-	    pageFactory.selectBatteryCapacity();
-	}
-  	
-//	This test case is to check Men jackets products
-  	  public void checkMenApparel() throws InterruptedException {
-		test = extent.createTest("checkMenApparel", "This test case is to check Men jackets products");
-		test.log(Status.INFO, "This test case is to check Men jackets products");
-		logger.info("Checking Men jacket products");
-		
-		FlipkartMenApparel pageFactory = new FlipkartMenApparel(driver);
-	    pageFactory.handleMenApparelAction();
-	    
-//	    Assestion
-	    String expectedText = "Men's Jackets";
-	    String actualText = pageFactory.getHeading();
-	    Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);	    		   
+// This test case is to sort product based on price
+	public void sortProduct() throws InterruptedException {
+	    try {
+	        test = extent.createTest("sortProduct", "This test case is to sort product based on price");
+	        test.log(Status.INFO, "This test case is to sort product based on price");
+	        logger.info("Sorting products from Low To High Prices");
+	        
+	        String filterLink = ConfigFile.getFilterLink();
+	        driver.get(filterLink);
+	        FlipkartSortFilter pageFactory = new FlipkartSortFilter(driver);
+	        pageFactory.applySortLowToHigh();
+	    } catch (Exception e) {
+	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+	        throw e;
+	    }
 	}
 
+	  
+//  This test case is to apply price filter
+	  public void applyPriceFilter() throws InterruptedException {
+	      try {
+	          test = extent.createTest("applyPriceFilter" ,"This test case is to apply price filter");
+	          test.log(Status.INFO, "This test case is to apply price filter");
+	          logger.info("Applying the price filter on search results");
+	          
+	          FlipkartPriceFilters pageFactory = new FlipkartPriceFilters(driver);
+	          pageFactory.priceTag();
+	      } catch (Exception e) {
+	          test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+	          throw e;
+	      }
+	  }
+  	  
+  	  
+ // This test case is to apply brand filter
+  	public void applyBrandFilter() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("applyBrandFilter", "This test case is to apply brand filter");
+  	        test.log(Status.INFO, "This test case is to apply brand filter");
+  	        logger.info("Applying the brand filter on search results");
+  	        
+  	        FlipkartBrandFilters pageFactory = new FlipkartBrandFilters(driver);
+  	        pageFactory.brandFilter();
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
+  	} 	
   	
-//	This test case is to check furniture products
-  	  public void checkFurniture() throws InterruptedException {
-		test = extent.createTest("checkFurniture", "This test case is to check furniture products");
-		test.log(Status.INFO, "This test case is to check furniture products");
-		logger.info("Checking Furniture products");
-		
-		FlipkartFurnitureProducts pageFactory = new FlipkartFurnitureProducts(driver);
-	    pageFactory.checkBlankets();
-	        
-//	    Assestion
-	    String expectedText = "Blankets";
-	    String actualText = pageFactory.getHeading();
-	    Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);	    		   
-	}
   	
+ // This test case is to apply rating filter
+  	public void applyRatingFilter() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("applyRatingFilter", "This test case is to apply rating filter");
+  	        test.log(Status.INFO, "This test case is to apply rating filter");
+  	        logger.info("Applying the rating filter on search results");
+  	        
+  	        FlipkartRatingFilters pageFactory = new FlipkartRatingFilters(driver);
+  	        pageFactory.ratingFilter();
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
+  	}
+
+    
+  	// This test case is to apply Battery Capacity filter
+  	public void applyBatteryCapacityFilter() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("applyBatteryCapacityFilter", "This test case is to apply Battery Capacity filter");
+  	        test.log(Status.INFO, "This test case is to apply Battery Capacity filter");
+  	        logger.info("Applying the Battery Capacity filter on search results");
+  	        
+  	        FlipkartBatteryFilter pageFactory = new FlipkartBatteryFilter(driver);
+  	        pageFactory.selectBatteryCapacity();
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
+  	}
+  	  
   	
-//	This test case is to check Offer-Zone Section
-  	  public void checkOfferZone() throws InterruptedException {
-		test = extent.createTest("checkOfferZone", "This test case is to check Offer-Zone Section");
-		test.log(Status.INFO, "This test case is to check furniture products");
-		logger.info("Checking Offer-Zone Products on Flipkart");
-		
-		FlipkartOfferZonePage pageFactory = new FlipkartOfferZonePage(driver);
-	    pageFactory.clickOfferZone();
-	    Thread.sleep(2000);
-	    pageFactory.clickSportsWear();
-	    
-//	    Assestion
-	    String expectedText = "Sports Casual Shoes Women's Footwear";
-	    String actualText = pageFactory.getHeading();
-	    Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);	    		
-	}
+ // This test case is to check Men jackets products
+  	public void checkMenApparel() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("checkMenApparel", "This test case is to check Men jackets products");
+  	        test.log(Status.INFO, "This test case is to check Men jackets products");
+  	        logger.info("Checking Men jacket products");
+  	        
+  	        FlipkartMenApparel pageFactory = new FlipkartMenApparel(driver);
+  	        pageFactory.handleMenApparelAction();
+  	        
+  	        // Assertion
+  	        String expectedText = "Men's Jackets";
+  	        String actualText = pageFactory.getHeading();
+  	        Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
+  	}
+
+  	
+  	  
+  	// This test case is to check furniture products
+  	public void checkFurniture() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("checkFurniture", "This test case is to check furniture products");
+  	        test.log(Status.INFO, "This test case is to check furniture products");
+  	        logger.info("Checking Furniture products");
+  	        
+  	        FlipkartFurnitureProducts pageFactory = new FlipkartFurnitureProducts(driver);
+  	        pageFactory.checkBlankets();
+  	        
+  	        // Assertion
+  	        String expectedText = "Blankets";
+  	        String actualText = pageFactory.getHeading();
+  	        Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
+  	}
+
+  	
+  	// This test case is to check Offer-Zone Section
+  	public void checkOfferZone() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("checkOfferZone", "This test case is to check Offer-Zone Section");
+  	        test.log(Status.INFO, "This test case is to check Offer-Zone Section");
+  	        logger.info("Checking Offer-Zone Products on Flipkart");
+  	        
+  	        FlipkartOfferZonePage pageFactory = new FlipkartOfferZonePage(driver);
+  	        pageFactory.clickOfferZone();
+  	        Thread.sleep(2000);
+  	        pageFactory.clickSportsWear();
+  	        
+  	        // Assertion
+  	        String expectedText = "Sports Casual Shoes Women's Footwear";
+  	        String actualText = pageFactory.getHeading();
+  	        Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
+  	}
+
   	
   	
 //	This test case is to check Grocery Store of Flipkart
@@ -428,42 +474,54 @@ public class Test_FlipkartSite {
 	}
     
   	
-//	This test case is to check my Cart
-  	  public void checkMyCart() throws InterruptedException {
-		test = extent.createTest("checkMyCart", "This test case is to check my Cart");
-		test.log(Status.INFO, "This test case is to check my Cart");
-		logger.info("Checking my flipkart Cart");
-		
-		FlipkartCheckCart pageFactory = new FlipkartCheckCart(driver);
-	    pageFactory.clickCartButton();
-	    
-//	    Assestion
-	    String expectedText = "New Delhi - 110010";
-	    String actualText = pageFactory.getHeading();
-	    Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);	    		    
-	}
-    
+  	  
+  	// This test case is to check my Cart
+  	public void checkMyCart() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("checkMyCart", "This test case is to check my Cart");
+  	        test.log(Status.INFO, "This test case is to check my Cart");
+  	        logger.info("Checking my flipkart Cart");
+  	        
+  	        FlipkartCheckCart pageFactory = new FlipkartCheckCart(driver);
+  	        pageFactory.clickCartButton();
+  	        
+  	        // Assertion
+  	        String expectedText = "New Delhi - 110010";
+  	        String actualText = pageFactory.getHeading();
+  	        Assert.assertTrue(actualText.contains(expectedText), "Expected text not found: " + expectedText);
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
+  	}
+
   	
-//	This test case is to check Flight Booking Section
-  	  public void checkFlights() throws InterruptedException {
-		test = extent.createTest("checkFlights", "This test case is to check Flight Booking Section");
-		test.log(Status.INFO, "This test case is to check Flight Booking Section");
-		logger.info("Checking Flight section on flipkart Cart");
-		
-		String URL = ConfigFile.getFlightLink();
-		driver.get(URL);
-		FlipkartFlightPage pageFactory = new FlipkartFlightPage(driver);
-		Thread.sleep(1000);
-		String departureCity = ConfigFile.getDepCity();
-		String arrivalCity = ConfigFile.getArrCity();
-		String city = ConfigFile.getCity();
-		pageFactory.enterDepartureCity(departureCity);
-		pageFactory.selectCity(city);
-		pageFactory.enterArrivalCity(arrivalCity);
-		pageFactory.searchFlights();
+  	
+ // This test case is to check Flight Booking Section
+  	public void checkFlights() throws InterruptedException {
+  	    try {
+  	        test = extent.createTest("checkFlights", "This test case is to check Flight Booking Section");
+  	        test.log(Status.INFO, "This test case is to check Flight Booking Section");
+  	        logger.info("Checking Flight section on flipkart Cart");
+  	        
+  	        String URL = ConfigFile.getFlightLink();
+  	        driver.get(URL);
+  	        FlipkartFlightPage pageFactory = new FlipkartFlightPage(driver);
+  	        Thread.sleep(1000);
+  	        String departureCity = ConfigFile.getDepCity();
+  	        String arrivalCity = ConfigFile.getArrCity();
+  	        String city = ConfigFile.getCity();
+  	        pageFactory.enterDepartureCity(departureCity);
+  	        pageFactory.selectCity(city);
+  	        pageFactory.enterArrivalCity(arrivalCity);
+  	        pageFactory.searchFlights();
+  	    } catch (Exception e) {
+  	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
+  	        throw e;
+  	    }
   	}
   	
-  	
+  	  
 //    This test case is for Register functionality
 	public void registerUser() throws InterruptedException {
     	try {
@@ -510,7 +568,7 @@ public class Test_FlipkartSite {
 	    }   
   }
   
-    
+  
     
 //    Method for segregating Tests on Report based on their results
   @AfterMethod
@@ -519,7 +577,7 @@ public class Test_FlipkartSite {
 
       if (result.getStatus() == ITestResult.FAILURE) {
           String methodName = result.getMethod().getMethodName();
-          String screenshotPath = takeScreenShot(testCaseName);
+          String screenshotPath = Utils.takeScreenShot(driver, testCaseName);
           test.log(Status.FAIL, MarkupHelper.createLabel(testCaseName + " Failed", ExtentColor.RED));
           logger.error(testCaseName + " Failed"); 
           test.addScreenCaptureFromPath(screenshotPath); 
@@ -535,8 +593,6 @@ public class Test_FlipkartSite {
   }
 
 
-    
-
 //    Method for closing driver
 	@AfterTest
 	public void tearDownTest() {
@@ -549,33 +605,20 @@ public class Test_FlipkartSite {
 	
 	
 	
-//	 Method for capturing screenshots of failed test cases
-	public String takeScreenShot(String methodName) {
-	    // Convert WebDriver object to TakesScreenshot
-	    TakesScreenshot ts = (TakesScreenshot) driver;
-	    // Capture the screenshot as File
-	    File source = ts.getScreenshotAs(OutputType.FILE);
-	    try {
-	        // Define the directory path for the screenshots
-	        String directory = "src/main/java/reports/extentreports/screenshots/";
-	        // Create the directory if it does not exist
-	        new File(directory).mkdirs();
-	        // Define the destination path for the screenshot
-	        Path destinationPath = Paths.get(directory + methodName + "_" + getCurrentTimeStamp() + ".png");
-	        // Copy the screenshot to the destination path
-	        Files.copy(source.toPath(), destinationPath);
-	        System.out.println("Screenshot taken: " + destinationPath);
-	        // Return the path of the saved screenshot
-	        return destinationPath.toAbsolutePath().toString();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        return "No File";
-	    }
-	}
-
-
-//	Method for getting current date-time
-	public String getCurrentTimeStamp() {
-		return new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
-	}
+    @DataProvider(name = "testData")
+    public Object[][] provideTestData() throws IOException {
+        FileInputStream fis = new FileInputStream("C:\\Users\\varunbajpai\\eclipse-workspace\\FlipkartTesting\\src\\main\\java\\utils\\testdata\\TestData2.xlsx");
+        Workbook workbook = WorkbookFactory.create(fis);
+        Sheet sheet = workbook.getSheet("Sheet1"); 
+        int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+        Object[][] testData = new Object[rowCount][2]; 
+        for (int i = 1; i <= rowCount; i++) {
+            Row row = sheet.getRow(i);
+            String testCaseName = row.getCell(0).getStringCellValue();
+            String executionRequired = row.getCell(1).getStringCellValue();
+            testData[i-1][0] = testCaseName;
+            testData[i-1][1] = executionRequired;
+        }
+        return testData;
+    }  
 }
