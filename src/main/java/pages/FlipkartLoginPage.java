@@ -59,8 +59,9 @@ public class FlipkartLoginPage {
 		requestOTP_Btn.click();
 	}
 	
-	public void enterOTPBox(String OTP) {
+	public boolean enterOTPBox(String OTP) {
 		OTP_Box.sendKeys(OTP);
+		return true;
 	}
 	
 	public void clickLoginBtn() {
