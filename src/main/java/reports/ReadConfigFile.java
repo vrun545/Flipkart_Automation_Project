@@ -174,4 +174,14 @@ public class ReadConfigFile {
 		else
 			throw new RuntimeException("registerLink not found in Config File");
 	}
+	
+	
+//	This function return Phone number
+	public String getPhoneNo() {
+		String PhoneNo = properties.getProperty("PhoneNo");
+		if (PhoneNo != null)
+			return PhoneNo;
+		else
+			throw new RuntimeException("PhoneNo not found in Config File");
+	}
 }
