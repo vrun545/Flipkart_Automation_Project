@@ -43,8 +43,8 @@ public class FlipkartRegister {
 		phoneNo_Box.click();
 	}
 	
-	public void enterPhoneNumber() {
-		phoneNo_Box.sendKeys("8810452169");
+	public void enterPhoneNumber(String PhoneNo) {
+		phoneNo_Box.sendKeys(PhoneNo);
 	}
 	
 	public void clickSubmitButton() {
@@ -55,8 +55,9 @@ public class FlipkartRegister {
 		OTP.sendKeys("216545");
 	}
 	
-	public void clickSignup() {
+	public boolean clickSignup() {
 		signupButton.click();
+		return true;
 	}
 
 }
