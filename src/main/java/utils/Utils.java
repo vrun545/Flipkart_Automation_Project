@@ -15,9 +15,32 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Set;
 
+import org.apache.poi.ss.usermodel.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 
 public class Utils {
+	
+//	This Method Provides test data from an Excel file.
+	public static Object[][] provideTestData(String filePath, String sheetName) throws IOException {
+        FileInputStream fis = new FileInputStream(filePath);
+        Workbook workbook = WorkbookFactory.create(fis);
+        Sheet sheet = workbook.getSheet(sheetName);
+        int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+        Object[][] testData = new Object[rowCount][2];
+        for (int i = 1; i <= rowCount; i++) {
+            Row row = sheet.getRow(i);
+            String testCaseName = row.getCell(0).getStringCellValue();
+            String executionRequired = row.getCell(1).getStringCellValue();
+            testData[i - 1][0] = testCaseName;
+            testData[i - 1][1] = executionRequired;
+        }
+        return testData;
+    }
+	
 
+//	This method is for handling New Tab
     public static String handleNewTab(WebDriver driver) {
         String originalTab = driver.getWindowHandle();
         Set<String> windowHandles = driver.getWindowHandles();
@@ -32,23 +55,17 @@ public class Utils {
     }
     
     
-    
+//    This method is for taking screenshot of Failed Test Cases
     public static String takeScreenShot(WebDriver driver, String methodName) {
         // Convert WebDriver object to TakesScreenshot
         TakesScreenshot ts = (TakesScreenshot) driver;
-        // Capture the screenshot as File
         File source = ts.getScreenshotAs(OutputType.FILE);
         try {
-            // Define the directory path for the screenshots
             String directory = "src/main/java/reports/extentreports/screenshots/";
-            // Create the directory if it does not exist
             new File(directory).mkdirs();
-            // Define the destination path for the screenshot
             Path destinationPath = Paths.get(directory + methodName + "_" + getCurrentTimeStamp() + ".png");
-            // Copy the screenshot to the destination path
             Files.copy(source.toPath(), destinationPath);
             System.out.println("Screenshot taken: " + destinationPath);
-            // Return the path of the saved screenshot
             return destinationPath.toAbsolutePath().toString();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,6 +73,8 @@ public class Utils {
         }
     }
 
+    
+//    This method is for capturing screenshot in real time
     public static String getCurrentTimeStamp() {
         return new SimpleDateFormat("yyyyMMddHHmmss").format(new java.util.Date());
     }
