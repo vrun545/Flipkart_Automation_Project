@@ -32,12 +32,13 @@ public class FlipkartBatteryFilter {
         PageFactory.initElements(driver, this);
     }
 
-    public void selectBatteryCapacity() throws InterruptedException {
+    public boolean selectBatteryCapacity() throws InterruptedException {
     	wait.until(ExpectedConditions.elementToBeClickable(batteryCapacity));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", batteryCapacity);
          batteryCapacity.click();
          wait.until(ExpectedConditions.elementToBeClickable(batteryCapacity));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", batteryCapacityCheckbox);
          batteryCapacityCheckbox.click();
+         return true;
     }
 }

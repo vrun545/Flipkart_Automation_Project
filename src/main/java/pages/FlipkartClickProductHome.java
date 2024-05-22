@@ -29,11 +29,12 @@ public class FlipkartClickProductHome {
 		HomeButton.click();
 	}
 	
-	public void clickOnProduct() {
+	public boolean clickOnProduct() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement visibleProductImage = wait.until(ExpectedConditions.visibilityOf(productImg));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", visibleProductImage);
         wait.until(ExpectedConditions.elementToBeClickable(visibleProductImage)).click();
+        return true;
 	}
-
+	
 }

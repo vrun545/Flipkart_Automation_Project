@@ -24,6 +24,7 @@ public class FlipkartSearchBox {
 	@FindBy(xpath="//div[text()=\"Apple iPhone 15 Pro Max (Natural Titanium, 256 GB)\"]")
 	public WebElement productLink;
 	
+	
 	public void clickSearchBox() {
 		searchBox.click();
 	}
@@ -32,12 +33,13 @@ public class FlipkartSearchBox {
 		searchBox.sendKeys(productName);
 	}
 	
-	public void clickProduct() {
+	public boolean clickProduct() {
 		productLink.click();
+		return true;
 	}
 	
 	public void clickSearchButton() {
 		searchButton.click();
 	}
-	
+
 }

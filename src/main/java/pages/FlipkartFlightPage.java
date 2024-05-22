@@ -46,8 +46,9 @@ public class FlipkartFlightPage {
         }
     }
     
-    public void searchFlights() {
+    public boolean searchFlights() {
     	searchButton.click();
+    	return true;
     }
 }
     

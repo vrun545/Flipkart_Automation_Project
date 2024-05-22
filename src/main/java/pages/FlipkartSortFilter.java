@@ -20,9 +20,10 @@ public class FlipkartSortFilter {
 	@FindBy(xpath = "//div[text()='Price -- Low to High']")
     private WebElement lowToHigh;
 	
-	public void applySortLowToHigh() throws InterruptedException {
+	public boolean applySortLowToHigh() throws InterruptedException {
 		Thread.sleep(1000);
 		lowToHigh.click();
+		return true;
 	}
 
 }

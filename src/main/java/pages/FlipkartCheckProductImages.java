@@ -22,7 +22,7 @@ public class FlipkartCheckProductImages {
     @FindBy(className="ZqtVYK")
     public WebElement imageContainer;
 
-    public void iterateOverImages() throws InterruptedException {
+    public boolean iterateOverImages() throws InterruptedException {
     	
         List<WebElement> imageElements = imageContainer.findElements(By.tagName("img"));
         
@@ -32,5 +32,6 @@ public class FlipkartCheckProductImages {
              imageElement.click();
              Thread.sleep(200);
         }
+        return true;
     }
 }

@@ -19,8 +19,8 @@ public class FlipkartRatingFilters {
 	@FindBy(xpath = "//div[@class='tKgS7w']//select[@class='Gn+jFg']")
     private WebElement dropdown;
 	
-	public void ratingFilter() {
-		
+	public boolean ratingFilter() {
+		return true;
 	}
 
 }

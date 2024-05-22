@@ -27,13 +27,14 @@ public class FlipkartAddToCart {
 	public WebElement goToCartButton;
 
 	
-	public void clickAddToCartButton() throws InterruptedException {
+	public boolean clickAddToCartButton() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement clickableAddToCartButton = wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", clickableAddToCartButton);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickableAddToCartButton);
         System.out.println("Add to cart button clicked");
         goToCartButton.click();
+        return true;
 	}
 	
 }

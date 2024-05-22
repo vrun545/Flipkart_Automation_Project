@@ -20,9 +20,10 @@ public class FlipkartPriceFilters {
     private WebElement dropdown;
    
 	
-	public void priceTag() {
+	public boolean priceTag() {
 		Select dropdownSelect = new Select(dropdown);
 		dropdownSelect.selectByValue("10000");
 		dropdownSelect.selectByValue("20000");
+		return true;
 	}
 }

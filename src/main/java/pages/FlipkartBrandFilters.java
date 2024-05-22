@@ -28,10 +28,11 @@ public class FlipkartBrandFilters {
     private WebElement samsungCheckbox;
 
    
-    public void brandFilter() {
+    public boolean brandFilter() {
     	wait.until(ExpectedConditions.elementToBeClickable(samsungCheckbox));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", samsungCheckbox);
         samsungCheckbox.click();
+        return true;
      }
 
 }

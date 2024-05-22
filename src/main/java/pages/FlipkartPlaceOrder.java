@@ -25,7 +25,8 @@ public class FlipkartPlaceOrder {
 		orderButton.click();
 	}
 	
-	public void enterEmail() {
+	public boolean enterEmail() {
 		emailBox.sendKeys("anything@mtnnrid4.mailosaur.net");
+		return true;
 	}
 }
