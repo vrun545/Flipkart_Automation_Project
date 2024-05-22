@@ -191,10 +191,10 @@ public class Test_FlipkartSite {
         test.log(Status.INFO, "Launching Flipkart Site");
         logger.info("Launching Flipkart Site");
         String URL = ConfigFile.getURL();
- 	driver.get(URL);	
- 	// Assertion
- 	String currentURL = driver.getCurrentUrl();
- 	Assert.assertEquals(currentURL, URL, "URLs do not match");
+ 		driver.get(URL);	
+ 		// Assertion
+ 	    String currentURL = driver.getCurrentUrl();
+ 	    Assert.assertEquals(currentURL, URL, "URLs do not match");
  	}  
         
     
@@ -228,7 +228,7 @@ public class Test_FlipkartSite {
   			pageFactory.enterProductName(product);
   			pageFactory.clickSearchButton();
   			boolean isProductClicked = pageFactory.clickProduct();		
- 		// Assertion
+  			// Assertion
   	        Assert.assertTrue(isProductClicked, "Product was not clicked successfully");
   		} 
   		catch (Exception e) {
@@ -295,7 +295,7 @@ public class Test_FlipkartSite {
     	     FlipkartAddToCart pageFactory = new FlipkartAddToCart(driver);
     	     boolean isClicked = pageFactory.clickAddToCartButton();
     	     // Assertion
-   	     Assert.assertTrue(isClicked, "Button was not clicked");
+   	        Assert.assertTrue(isClicked, "Button was not clicked");
     	    } 
     	catch (Exception e) {
     	        test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
@@ -352,7 +352,7 @@ public class Test_FlipkartSite {
 	      try {
 	          FlipkartPriceFilters pageFactory = new FlipkartPriceFilters(driver);
 	          boolean isClicked = pageFactory.priceTag();
-	      // Assertion
+	          // Assertion
      	      Assert.assertTrue(isClicked, "Button was not clicked");
 	      } 
 	      catch (Exception e) {
@@ -570,7 +570,7 @@ public class Test_FlipkartSite {
             boolean isClicked = pageFactory.clickSignup();
             
             // Assertion
-   	    Assert.assertTrue(isClicked, "Button was not clicked");
+   	        Assert.assertTrue(isClicked, "Button was not clicked");
         } 
     	catch (Exception e) {
             test.log(Status.FAIL, "Exception occurred: " + e.getMessage());
@@ -632,7 +632,7 @@ public class Test_FlipkartSite {
 	@AfterTest
 	public void tearDownTest() {
 		if (driver != null) {
-		driver.quit();
+			driver.quit();
 		}
 		ExtentManager.flushReport();
 		System.out.println("Testing done successfully !!!");
