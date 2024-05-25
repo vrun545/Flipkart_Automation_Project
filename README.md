@@ -9,7 +9,7 @@ This project is aimed at automating testing scenarios for the Flipkart website u
 3. Test data read from Excel files, allowing selective test case execution based on the "Execution Required" field.
 4. Configuration files used for managing global parameters.
 5. Proper waits (implicit and explicit) utilized for synchronized test execution.
-6. Tests run on Microsoft Edge, Chrome, Firefox browsers with an option to run in headless mode.
+6. Tests run on Microsoft Edge, Chrome, Firefox browsers with an option to run in headless mode on Chrome.
 7. Grouping, priority, and enable/disable features of TestNG used for managing test cases.
 8. Assertions used throughout the suite for validating expected outcomes.
 9. Error screenshots and detailed assertions added to the Extent Report for effective reporting.
