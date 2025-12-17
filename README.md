@@ -29,7 +29,7 @@ This project is aimed at automating testing scenarios for the Flipkart website u
 
 ## How to Install and Run the Code
 
-1. Clone the repository from GitHub: [repository_link](https://github.com/your-repo-link)
+1. Clone the repository from GitHub
 2. Ensure you have Java JDK, Maven, and relevant browsers installed on your system.
 3. Set up the project in your preferred IDE (Eclipse, IntelliJ, etc.).
 4. Configure the project dependencies and ensure all necessary libraries are included.
